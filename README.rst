@@ -9,16 +9,22 @@ Installation Instructions
 
 1. Clone the repository and create a virtual environment for the project, using Python 3.4:
 
-    mkvirtualenv --python=/usr/local/bin/python3.4 django-zoo
+   .. code:: bash
+
+      mkvirtualenv --python=/usr/local/bin/python3.4 django-zoo
 
 2. Install the pip requirements.
+
+   .. code:: bash
 
     cd django-zoo
     pip install -r requirements.txt
 
 4. Run the database migrations.
 
-    python manage.py migrate
+   .. code:: bash
+
+       python manage.py migrate
 
 
 Zoo Game
