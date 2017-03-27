@@ -1,4 +1,5 @@
 from django.views import generic
+<<<<<<< HEAD
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
@@ -39,3 +40,17 @@ class CageDetailView(generic.DetailView):
 
     model = Cage
     template_name = "cage_detail.html"
+=======
+
+
+class ZooPage(generic.TemplateView):
+    template_name = "zoo.html"
+
+
+class CagePage(generic.TemplateView):
+    template_name = "cage.html"
+
+
+class AnimalPage(generic.TemplateView):
+    template_name = "animal.html"
+>>>>>>> 5b9301df6434630a9866467f25e3b4026750e4c4

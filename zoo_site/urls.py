@@ -15,10 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+<<<<<<< HEAD
 from main.zoo import views
 
 urlpatterns = [
     url(r'^$', views.HomePage.as_view(), name='home'),
     url(r'^zoo/', include('main.zoo.urls')),
+=======
+from main.zoo import urls as zoo_urls
+from .views import HomePage
+
+urlpatterns = [
+    url(r'^$', HomePage.as_view(), name='home'),
+    url(r'^zoo/', include(zoo_urls, namespace='zoo')),
+>>>>>>> 5b9301df6434630a9866467f25e3b4026750e4c4
     url(r'^admin/', admin.site.urls),
 ]
