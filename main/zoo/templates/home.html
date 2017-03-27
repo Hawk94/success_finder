@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{{ block.super }}Home{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="home" %}
+{% endblock %}
+
+{% block navbar-right %}
+    {{ block.super }}
+{% endblock %}
+
+{% block splash %}
+  <div class="jumbotron jumbotron-carousel corporate-jumbo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-8">
+          <h1>Growth Street Zoo</h1>
+          <p>OOP Programming Practice + Django.</p>
+        </div>
+        <div class="col-md-4 col-sm-4">
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock splash %}
+
+{% block container %}
+<!-- Benefits of the Django application -->
+<a name="about"></a>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Zoo</h2>
+      <p>The Growth Street Zoo is full of interesting animals. Each one has a name so our Zoo Keepers can keep track of them. How many different animals can you find? Come on in and take a look! </p>
+      <p><a class="btn btn-primary" href="zoo" role="button">Visit the Zoo &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+      <h2>Cage</h2>
+      <p>We have lots of different cages. Each cage is designed to look after the animals - keeping them safe and healthy. Make sure not to put any predators in there though!! We don't want anyone to be eaten...  </p>
+      <p><a class="btn btn-primary" href="zoo/cages" role="button">See our Cages &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+      <h2>Animal</h2>
+      <p>We have many different species. Can you recognise all the different ones? We have made it super easy to find out - just ask! Having all of these different species in one place can get tiring.</p>
+      <p><a class="btn btn-primary" href="zoo/animals" role="button">Here are the Animals &raquo;</a></p>
+    </div>
+  </div>
+</div>
+
+{% endblock container %}
+
+{% block scripts %}
+<script src="{% static 'site/js/site.js' %}"></script>
+{% endblock scripts %}
+

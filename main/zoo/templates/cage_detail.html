@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load django_tables2 %}
+
+{% block title %}{{ block.super }}Cages{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="cage" %}
+{% endblock %}
+
+{% block container %}
+  <div id="sec2" class="text-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>Cage: {{ object.name }}</h1>
+          <p>Created: {{ object.created_at }}</p>
+          <p>Location: {{ object.zoo }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock container %}

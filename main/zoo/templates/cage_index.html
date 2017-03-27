@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load django_tables2 %}
+
+{% block title %}{{ block.super }}Cages{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="cage" %}
+{% endblock %}
+
+{% block container %}
+<div id="sec1" class="text-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>Cages</h1>
+        {% render_table table %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock container %}
