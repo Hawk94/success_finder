@@ -1,5 +1,4 @@
 from django.views import generic
-<<<<<<< HEAD
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
@@ -10,14 +9,11 @@ from .tables import CageTable
 
 
 class HomePage(generic.TemplateView):
-    template_name = "home.html"\
+    template_name = "home.html"
 
 
 class ZooPage(generic.TemplateView):
     template_name = "zoo_index.html"
-
-# def zoo_index(request, template_name='zoo_index.html'):
-#     return render(request, template_name)
 
 
 def cage_page(request):
@@ -40,11 +36,6 @@ class CageDetailView(generic.DetailView):
 
     model = Cage
     template_name = "cage_detail.html"
-=======
-
-
-class ZooPage(generic.TemplateView):
-    template_name = "zoo.html"
 
 
 class CagePage(generic.TemplateView):
@@ -53,4 +44,3 @@ class CagePage(generic.TemplateView):
 
 class AnimalPage(generic.TemplateView):
     template_name = "animal.html"
->>>>>>> 5b9301df6434630a9866467f25e3b4026750e4c4

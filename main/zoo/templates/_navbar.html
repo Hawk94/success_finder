@@ -1,4 +1,4 @@
 <li {% if active_link == "home" %}class="active"{% endif %}><a href="{% url 'home' %}">Home</a></li>
-<li {% if active_link == "zoo" %}class="active"{% endif %}><a href="{% url 'zoo_index' %}">Zoo</a></li>
-<li {% if active_link == "cage" %}class="active"{% endif %}><a href="{% url 'cage_index' %}">Cages</a></li>
-<li {% if active_link == "animal" %}class="active"{% endif %}><a href="{% url 'animal_index' %}">Animals</a></li>
+<li {% if active_link == "zoo" %}class="active"{% endif %}><a href="{% url 'zoo:zoo' %}">Zoo</a></li>
+<li {% if active_link == "cages" %}class="active"{% endif %}><a href="{% url 'zoo:cages' %}">Cages</a></li>
+<li {% if active_link == "animals" %}class="active"{% endif %}><a href="{% url 'zoo:animals' %}">Animals</a></li>
