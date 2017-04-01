@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_tables2',
     'main.accounts',
+    'main.contracts',
+    'main.customers',
+    'main.issues',
+    'main.products',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -125,7 +129,7 @@ STATICFILES_DIRS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 DATABASES = {
