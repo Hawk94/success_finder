@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django_tables2 import tables
 
 from ..products.models import Product
 
@@ -45,4 +46,12 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CustomerTable(tables.Table):
+    # edit_entries = tables.TemplateColumn('<a href="/{{record.id}}">Edit</a>')
+
+    class Meta:
+        model = Customer
+        attrs = {"class": "paleblue"}
 
