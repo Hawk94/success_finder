@@ -4,10 +4,8 @@ from .models import Customer
 
 
 class CustomerTable(tables.Table):
-    customer_name = tables.LinkColumn('customer-detail', args=[A('pk')])
-    
+
     class Meta:
         model = Customer
-        fields = ('name')
+        fields = ('name', 'initial_start_date')
         attrs = {"class": "table-striped table-bordered"}
-        empty_text = "There are no customers matching the search criteria..."

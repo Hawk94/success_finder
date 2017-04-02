@@ -12,13 +12,10 @@
 {% block container %}
   <div id="sec2" class="text-page">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h1>Cage: {{ object.name }}</h1>
-          <p>Created: {{ object.created_at }}</p>
-          <p>Location: {{ object.zoo }}</p>
+        <div class="col-md-12 text-left">
+          <h1>Customer: {{ customer.name }}</h1>
+          <p>Initial Start Date: {{ customer.initial_start_date|date }}</p>
         </div>
-      </div>
     </div>
   </div>
 {% endblock container %}
