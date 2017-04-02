@@ -20,6 +20,9 @@ from main.issues import urls as issue_urls
 from django.contrib import admin
 from .views import HomePage
 
+from two_factor.gateways.twilio.urls import urlpatterns as tf_twilio_urls
+from two_factor.urls import urlpatterns as tf_urls
+
 
 urlpatterns = [
     url(r'^$', HomePage.as_view(), name='home'),
@@ -27,4 +30,7 @@ urlpatterns = [
     url(r'^customers/', include(customer_urls, namespace='customers')),
     url(r'^issues/', include(issue_urls, namespace='issues')),
     url(r'^admin/', admin.site.urls),
+    
+    url(r'', include('two_factor.urls', 'two_factor')),
+    url(r'', include('user_sessions.urls', 'user_sessions')),
 ]
