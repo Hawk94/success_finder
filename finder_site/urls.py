@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from main.accounts import urls as accounts_urls
 from main.customers import urls as customer_urls
+from main.issues import urls as issue_urls
 from django.contrib import admin
 from .views import HomePage
 
@@ -24,5 +25,6 @@ urlpatterns = [
     url(r'^$', HomePage.as_view(), name='home'),
     url(r'^accounts/', include(accounts_urls, namespace='accounts')),
     url(r'^customers/', include(customer_urls, namespace='customers')),
+    url(r'^issues/', include(issue_urls, namespace='issues')),
     url(r'^admin/', admin.site.urls),
 ]
