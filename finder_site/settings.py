@@ -30,7 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_URL = 'accounts:two_factor:login'
+LOGIN_URL = 'two_factor:login'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Application definition
 
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user_sessions',
     'debug_toolbar',
     'authtools',
     'crispy_forms',

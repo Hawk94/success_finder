@@ -32,5 +32,4 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     
     url(r'', include('two_factor.urls', 'two_factor')),
-    url(r'', include('user_sessions.urls', 'user_sessions')),
 ]

@@ -24,8 +24,3 @@ class RegistrationCompleteView(TemplateView):
         context = super(RegistrationCompleteView, self).get_context_data(**kwargs)
         context['accounts:login_url'] = resolve_url(settings.LOGIN_URL)
         return context
-
-
-@class_view_decorator(never_cache)
-class ExampleSecretView(OTPRequiredMixin, TemplateView):
-    template_name = 'secret.html'
