@@ -1,80 +1,26 @@
-from __future__ import unicode_literals
-from django.core.urlresolvers import reverse_lazy
-from django.views import generic
-from django.contrib.auth import get_user_model
-from django.contrib import auth
-from django.contrib import messages
-from authtools import views as authviews
-from braces import views as bracesviews
 from django.conf import settings
-from . import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect, resolve_url
+from django.views.decorators.cache import never_cache
+from django.views.generic import FormView, TemplateView
 
-User = get_user_model()
-
-
-class LoginView(bracesviews.AnonymousRequiredMixin,
-                authviews.LoginView):
-    template_name = "accounts/login.html"
-    form_class = forms.LoginForm
-    success_url = reverse_lazy('home')
-
-    def form_valid(self, form):
-        redirect = super(LoginView, self).form_valid(form)
-        remember_me = form.cleaned_data.get('remember_me')
-        if remember_me is True:
-            ONE_MONTH = 30*24*60*60
-            expiry = getattr(settings, "KEEP_LOGGED_DURATION", ONE_MONTH)
-            self.request.session.set_expiry(expiry)
-        return redirect
+from two_factor.views import OTPRequiredMixin
+from two_factor.views.utils import class_view_decorator
 
 
-class LogoutView(authviews.LogoutView):
-    url = reverse_lazy('home')
-
-
-class SignUpView(bracesviews.AnonymousRequiredMixin,
-                 bracesviews.FormValidMessageMixin,
-                 generic.CreateView):
-    form_class = forms.SignupForm
-    model = User
-    template_name = 'accounts/signup.html'
-    success_url = reverse_lazy('home')
-    form_valid_message = "You're signed up!"
-
-    def form_valid(self, form):
-        r = super(SignUpView, self).form_valid(form)
-        username = form.cleaned_data["email"]
-        password = form.cleaned_data["password1"]
-        user = auth.authenticate(email=username, password=password)
-        auth.login(self.request, user)
-        return r
-
-
-class PasswordChangeView(authviews.PasswordChangeView):
-    form_class = forms.PasswordChangeForm
-    template_name = 'accounts/password-change.html'
-    success_url = reverse_lazy('home')
+class RegistrationView(FormView):
+    template_name = 'registration.html'
+    form_class = UserCreationForm
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request,
-                         "Your password was changed, "
-                         "hence you have been logged out. Please relogin")
-        return super(PasswordChangeView, self).form_valid(form)
+        return redirect('accounts:registration_complete')
 
 
-class PasswordResetView(authviews.PasswordResetView):
-    form_class = forms.PasswordResetForm
-    template_name = 'accounts/password-reset.html'
-    success_url = reverse_lazy('accounts:password-reset-done')
-    subject_template_name = 'accounts/emails/password-reset-subject.txt'
-    email_template_name = 'accounts/emails/password-reset-email.html'
+class RegistrationCompleteView(TemplateView):
+    template_name = 'registration_complete.html'
 
-
-class PasswordResetDoneView(authviews.PasswordResetDoneView):
-    template_name = 'accounts/password-reset-done.html'
-
-
-class PasswordResetConfirmView(authviews.PasswordResetConfirmAndLoginView):
-    template_name = 'accounts/password-reset-confirm.html'
-    form_class = forms.SetPasswordForm
+    def get_context_data(self, **kwargs):
+        context = super(RegistrationCompleteView, self).get_context_data(**kwargs)
+        context['accounts:login_url'] = resolve_url(settings.LOGIN_URL)
+        return context
