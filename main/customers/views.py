@@ -12,6 +12,15 @@ class CustomerIndex(LoginRequiredMixin, SingleTableView):
     model = Customer
     table_class = CustomerTable
     template_name = "customer_index.html"
+    
+    def customer_number(self):
+        return len(Customer.objects.all())
+    
+    def health_score(self):
+        return '60%'
+
+    def renewals(self):
+        return 4
 
 
 class CustomerCreate(LoginRequiredMixin, CreateView):

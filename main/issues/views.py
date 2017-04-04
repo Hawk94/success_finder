@@ -13,10 +13,19 @@ class IssueIndex(LoginRequiredMixin, SingleTableView):
     table_class = IssueTable
     template_name = "issue_index.html"
 
+    def issue_number(self):
+        return len(Issue.objects.all())
+    
+    def good_issues(self):
+        return 3
+
+    def bad_issues(self):
+        return 7
+
 
 class IssueCreate(LoginRequiredMixin, CreateView):
     model = Issue
-    fields = ['priority', 'category']
+    fields =  ['description', 'category', 'priority', 'issue_type', 'sf_contact', 'contract']
     template_name = "issue_form.html"
     success_url = reverse_lazy('issues:index')
 
