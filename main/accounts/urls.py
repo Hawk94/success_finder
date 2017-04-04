@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.auth.views import logout
 
 from .views import (
-    RegistrationCompleteView, RegistrationView,
+    RegistrationCompleteView, RegistrationView
 )
 
 urlpatterns = [
